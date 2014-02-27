@@ -1,0 +1,37 @@
+--
+- name: Install the postgresql remote repo
+  yum: name=http://yum.postgresql.org/{{ postgresql_version }}/redhat/rhel-6-x86_64/pgdg-centos{{ postgresql_version|replace('.','') }}-{{ postgresql_version }}-{{ postgresql_build }}.noarch.rpm state=present
+
+- name: Install the postgresql rpm from a remote repo
+  yum: name=postgresql{{ postgresql_version|replace('.','') }}-server state=present
+  register: postgresql_installed
+
+- name: Init postgresql db
+  command: service postgresql-{{ postgresql_version }} initdb –encoding=UNICODE creates=/var/lib/pgsql/data/postgresql.conf
+  when: postgresql_installed|changed
+
+- name: Configure md5 authentication for user alfresco on db alfresco
+  copy: src=pg_hba.conf dest=/var/lib/pgsql/{{ postgresql_version }}/data
+  when: postgresql_installed|changed
+
+- name: Start and enable postsgres service
+  service: name=postgresql-{{ postgresql_version }} state=restarted enabled=yes
+  when: postgresql_installed|changed
+
+- name: Wait for the service up
+  wait_for: port=5432 delay=30
+  when: postgresql_repo_installed|changed
+
+- name: Enable sudo for group wheel for postgres access
+  lineinfile: 'dest=/etc/sudoers regexp="^%wheel ALL=NOPASSWD: ALL" line="%wheel ALL=(ALL) NOPASSWD: ALL"'
+  when: postgresql_installed|changed
+
+- name: Create alfresco_user / roles
+  postgresql_user: name={{ alfresco_db_user}} password={{ alfresco_db_password }} role_attr_flags=LOGIN state=present
+  sudo_user: postgres
+  when: postgresql_installed|changed
+
+- name: Create alfresco database
+  postgresql_db: name={{ alfresco_db_name }} owner={{ alfresco_db_user }} state=present
+  sudo_user: postgres
+  when: postgresql_installed|changed

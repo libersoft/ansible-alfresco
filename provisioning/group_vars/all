@@ -1,0 +1,25 @@
+---
+# java
+java_version: '7u51'
+java_build: 'b13'
+
+# tomcat
+tomcat_version: '7.0.52'
+java_opts: '-Xms512m -Xmx1000m -Xss768k -XX:MaxPermSize=256m -XX:NewSize=256m -server'
+
+# db
+postgresql_version: '9.3'
+postgresql_build: '1'
+alfresco_db_name: 'alfresco'
+alfresco_db_user: 'alfresco'
+alfresco_db_password: 'alfresco'
+
+# tools
+imagemagick_version: '6.5.4.7'
+
+# alfresco
+alfresco_build: '4795'
+alfresco_version: '4.2.d'
+alfresco_user: 'alfresco'
+alfresco_user_home: '/opt/alfresco'
+alfresco_uid: '501'

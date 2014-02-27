@@ -1,0 +1,23 @@
+---
+- name: Download JDK build and version
+  shell: 'wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com"
+    "http://download.oracle.com/otn-pub/java/jdk/{{ java_version }}-{{ java_build }}/jdk-{{ java_version }}-linux-x{{ ansible_userspace_bits }}.rpm"
+    -O /tmp/jdk-{{ java_version }}-linux-x{{ ansible_userspace_bits }}.rpm creates=/tmp/jdk-{{ java_version }}-linux-x{{ ansible_userspace_bits }}.rpm'
+  register: jdk_downloaded
+
+- name: Install JDK RPM package
+  yum: name=/tmp/jdk-{{ java_version }}-linux-x{{ ansible_userspace_bits }}.rpm state=present
+  register: jdk_installed
+  when: jdk_downloaded|changed
+
+- name: Set java link by latest
+  command: alternatives --install /usr/bin/java java /usr/java/latest/bin/java 200000
+  when: jdk_installed|changed
+
+- name: Set jar link by latest
+  command: alternatives --install /usr/bin/javaws javaws /usr/java/latest/bin/javaws 200000
+  when: jdk_installed|changed
+
+- name: Update profile JDK / JRE
+  copy: src=java_env.sh dest=/etc/profile.d/java_env.sh
+  when: jdk_installed|changed

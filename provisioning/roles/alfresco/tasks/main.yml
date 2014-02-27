@@ -1,0 +1,45 @@
+---
+- name: Download alfresco community
+  shell: 'wget http://dl.alfresco.com/release/community/build-{{ alfresco_build }}/alfresco-community-{{ alfresco_version }}.zip
+    -O /tmp/alfresco-community-{{ alfresco_version }}.zip creates=/tmp/alfresco-community-{{ alfresco_version }}.zip'
+  register: alfresco_downloaded
+
+- name: Extract alfresco
+  command: unzip -o /tmp/alfresco-community-{{ alfresco_version }}.zip -d /tmp/alfresco/
+  register: alfresco_extracted
+  when: alfresco_downloaded|changed
+
+- name: Install alfresco to tomcat
+  shell: cp -rf /tmp/alfresco/web-server/* /opt/alfresco/tomcat/
+  when: alfresco_extracted|changed
+
+- name: Install alfresco bin, licenses and readme
+  shell: cp -rf /tmp/alfresco/bin /tmp/alfresco/licenses /tmp/alfresco/README.txt /opt/alfresco/tomcat/
+  when: alfresco_extracted|changed
+
+- name: Cleanup alfresco unzipped
+  file: path=/tmp/alfresco state=absent
+  when: alfresco_extracted|changed
+
+- name: Create alfresco alf_data directory
+  file: path=/opt/alfresco/alf_data
+  when: alfresco_extracted|changed
+
+- name: Install libreoffice startup script
+  copy: src=start_oo.sh dest=/opt/alfresco/start_oo.sh owner=alfresco group=alfresco mode=0744
+  when: alfresco_extracted|changed
+
+- name: Install alfresco startup script
+  template: src=alfresco.sh dest=/opt/alfresco/alfresco.sh owner=alfresco group=alfresco mode=0744
+  when: alfresco_extracted|changed
+
+- name: Install alfresco init script
+  copy: src=alfresco dest=/etc/init.d/alfresco owner=root group=root mode=0755
+  when: alfresco_extracted|changed
+
+- name: Install alfresco global configuration
+  template: src=alfresco-global.properties dest=/opt/alfresco/tomcat/shared/classes/alfresco-global.properties owner=alfresco group=alfresco mode=0644
+  when: alfresco_extracted|changed
+
+- name: Start alfresco server
+  service: name=alfresco state=started

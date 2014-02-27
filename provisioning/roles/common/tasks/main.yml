@@ -1,0 +1,19 @@
+---
+- name: Add basic packages
+  yum: state=latest name={{ item }}
+  with_items:
+    - wget
+    - unzip
+    - libselinux-python
+    - python-psycopg2
+    - vim
+    - byobu
+
+- name: Create alfresco group
+  group: name=alfresco state=present
+
+- name: Create alfresco user
+  user: name={{ alfresco_user }} home={{ alfresco_user_home }} uid={{ alfresco_uid }} shell=/bin/sh group=alfresco state=present
+
+- name: Create alfresco folder
+  file: path=/opt/alfresco state=directory owner={{ alfresco_user }} group=alfresco

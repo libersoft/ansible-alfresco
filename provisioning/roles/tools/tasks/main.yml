@@ -1,0 +1,15 @@
+---
+- name: add atrpms repo for ffmpeg
+  yum: name=http://dl.atrpms.net/el6-x86_64/atrpms/stable/atrpms-repo-6-7.el6.x86_64.rpm state=present
+
+- name: add rpmforge for swftools
+  yum: name=http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm state=present
+
+- name: add tools package
+  yum: state=latest name={{ item }}
+  with_items:
+    - ImageMagick
+    - ffmpeg
+    - libreoffice
+    - libreoffice-headless
+    - swftools

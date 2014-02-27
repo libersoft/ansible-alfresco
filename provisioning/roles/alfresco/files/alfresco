@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+ALFRESCO_SCRIPT="/opt/alfresco/alfresco.sh"
+
+if [ "$1" = "start" ]; then
+ su - alfresco "${ALFRESCO_SCRIPT}" "start"
+elif [ "$1" = "stop" ]; then
+ su - alfresco "${ALFRESCO_SCRIPT}" "stop"
+elif [ "$1" = "restart" ]; then
+ su - alfresco "${ALFRESCO_SCRIPT}" "stop"
+ su - alfresco "${ALFRESCO_SCRIPT}" "start"
+else
+ echo "Usage: /etc/init.d/alfresco [start|stop|restart]"
+fi

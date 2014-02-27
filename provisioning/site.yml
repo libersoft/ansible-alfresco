@@ -1,0 +1,10 @@
+---
+- hosts: all
+  sudo: True
+  roles:
+    - common
+    - java
+    - tomcat
+    - db 
+    - tools
+    - alfresco
