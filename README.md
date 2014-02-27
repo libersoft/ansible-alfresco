@@ -57,6 +57,9 @@ Currently in testing.
 *   Apt-based distro compatibility
 *   Some refactoring (conditionals, variables, tags, users)
 *   Multi machine environment
+*   SSL enabled version
+
+Feel free to contribute.
 
 ## License
 
