@@ -1,6 +1,6 @@
 ---
 - name: Download alfresco community
-  shell: 'wget http://dl.alfresco.com/release/community/build-{{ alfresco_build }}/alfresco-community-{{ alfresco_version }}.zip
+  shell: 'wget http://dl.alfresco.com/release/community/{{ alfresco_version }}-build-{{ alfresco_build }}/alfresco-community-{{ alfresco_version }}.zip
     -O /tmp/alfresco-community-{{ alfresco_version }}.zip creates=/tmp/alfresco-community-{{ alfresco_version }}.zip'
   register: alfresco_downloaded
 
