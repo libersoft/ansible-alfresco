@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Ansible-alfresco by libersoft</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/libersoft/ansible-alfresco">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/libersoft/ansible-alfresco/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/libersoft/ansible-alfresco/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Ansible-alfresco</h1>
+          <p>Ansible playbook to deploy an allinone machine alfresco environment</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/libersoft">libersoft</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a name="ansible-alfresco" class="anchor" href="#ansible-alfresco"><span class="octicon octicon-link"></span></a>ansible-alfresco</h1>
+
+<p><a href="http://www.ansible.com/home">Ansible</a> playbook to deploy an allinone rpm-based machine alfresco community environment. Based on a 1524MB RAM (and relative JAVA_OPTS tuning) CentOS 6.4 <a href="https://github.com/2creatives/vagrant-centos/releases/tag/v6.5.1">minimal vagrant box</a> and packed with following components:</p>
+
+<ul>
+<li>  Some prerequisites and utilities (wget, unzip, libselinux-python, python-psycopg2, vim, byobu)</li>
+<li>  Oracle Java JDK 7 from Oracle website</li>
+<li>  Apache Tomcat 7 from Tomcat website</li>
+<li>  PostgreSql 9 from PostgreSql official rpm repo</li>
+<li>  ImageMagick from distro repo</li>
+<li>  FFmpeg from atrpms repo</li>
+<li>  Libreoffice from distro repo</li>
+<li>  SWFTools from rpmforge repo</li>
+<li>  Alfresco Community 4.2 Repository from Alfresco website</li>
+<li>  Alfresco Community 4.2 Share from Alfresco website</li>
+</ul><p>Especially useful for virtual development environment, maybe using <a href="http://www.vagrantup.com/">Vagrant</a>.</p>
+
+<h2>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>Configuration variables are in <code>group_vars/all</code>. You can adjust default values to your need, especially versions, username/password and JAVA_OPTS.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<pre><code>$ git clone https://github.com/libersoft/ansible-alfresco.git ansible-alfresco
+</code></pre>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a name="plain-ansible" class="anchor" href="#plain-ansible"><span class="octicon octicon-link"></span></a>Plain Ansible</h3>
+
+<pre><code>$ cd ansible-alfresco/provisioning
+$ ansible-playbook [target] site.yml
+</code></pre>
+
+<p>Point your browser to <code>http://{{ target_ip }}:58080/share</code></p>
+
+<ul>
+<li>  user:admin</li>
+<li>  password:admin</li>
+</ul><h3>
+<a name="vagrant" class="anchor" href="#vagrant"><span class="octicon octicon-link"></span></a>Vagrant</h3>
+
+<pre><code>$ cd ansible-alfresco
+$ vagrant up
+$ vagrant provision
+</code></pre>
+
+<p>Point your browser to <code>http://127.0.0.1:58080/share</code></p>
+
+<ul>
+<li>  user:admin</li>
+<li>  password:admin</li>
+</ul><h2>
+<a name="status" class="anchor" href="#status"><span class="octicon octicon-link"></span></a>Status</h2>
+
+<p>Currently in testing.</p>
+
+<h2>
+<a name="future-improvements" class="anchor" href="#future-improvements"><span class="octicon octicon-link"></span></a>Future improvements</h2>
+
+<ul>
+<li>  Include Apache Solr</li>
+<li>  Apt-based distro compatibility</li>
+<li>  Some refactoring (conditionals, variables, tags, users)</li>
+<li>  Multi machine environment</li>
+<li>  SSL enabled version</li>
+</ul><p>Feel free to contribute.</p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p><a href="https://www.gnu.org/licenses/gpl.html">Gnu General Public License 3.0</a></p>
+
+<h2>
+<a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>Credits</h2>
+
+<ul>
+<li>  <a href="http://fcorti.com/2013/01/09/installation-alfresco-4-2-c-on-ubuntu/">Step by step installation of Alfresco Community 4.2.c on Ubuntu 12.04 LTS minimal 64bit… please, no bundle!</a>
+</li>
+<li>  <a href="https://github.com/2creatives/vagrant-centos">vagrant-centos</a>
+</li>
+<li>  <a href="https://github.com/maoo/vagrant-alfresco">vagrant-alfresco</a>
+</li>
+<li>  <a href="https://github.com/maoo/chef-alfresco">chef-alfresco</a>
+</li>
+</ul>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
