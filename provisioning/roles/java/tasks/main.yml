@@ -1,6 +1,6 @@
 ---
 - name: Download JDK build and version
-  shell: 'wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com"
+  shell: 'wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie"
     "http://download.oracle.com/otn-pub/java/jdk/{{ java_version }}-{{ java_build }}/jdk-{{ java_version }}-linux-x{{ ansible_userspace_bits }}.rpm"
     -O /tmp/jdk-{{ java_version }}-linux-x{{ ansible_userspace_bits }}.rpm creates=/tmp/jdk-{{ java_version }}-linux-x{{ ansible_userspace_bits }}.rpm'
   register: jdk_downloaded
