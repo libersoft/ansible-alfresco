@@ -38,7 +38,7 @@
   when: alfresco_solr_extracted|changed
 
 - name: Restart alfresco server
-  service: name=alfresco state=restarted sleep=60
+  service: name=alfresco state=restarted
   register: alfresco_solr_restarted
   when: alfresco_solr_extracted|changed
 
