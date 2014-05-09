@@ -43,14 +43,14 @@
 
 - name: Set alfresco file permissions
   file: path={{ alfresco_user_home }} owner={{ alfresco_user }} group=alfresco recurse=yes
-  when: tomcat_downloaded|changed
+  when: alfresco_extracted|changed
 
 - name: Start alfresco server
   service: name=alfresco state=started
   when: alfresco_extracted|changed
 
 - name: Relax security constraint for solr http comunication
-  template: src=web.xml dest={{ alfresco_user_home }}/tomcat/webapps/alfresco/WEB-INF/web.xml owner=alfresco group=alfresco mode=0644
+  copy: src=web.xml dest={{ alfresco_user_home }}/tomcat/webapps/alfresco/WEB-INF/web.xml owner=alfresco group=alfresco mode=0644
   when: alfresco_extracted|changed
 
 - name: Restart alfresco server
