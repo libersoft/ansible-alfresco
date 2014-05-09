@@ -22,7 +22,7 @@
   when: alfresco_extracted|changed
 
 - name: Create alfresco alf_data directory
-  file: path={{ alfresco_user_home }}/alf_data
+  file: path={{ alfresco_user_home }}/alf_data state=directory owner={{ alfresco_user }} group=alfresco
   when: alfresco_extracted|changed
 
 - name: Install libreoffice startup script
