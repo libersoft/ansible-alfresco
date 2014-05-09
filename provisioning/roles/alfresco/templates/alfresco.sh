@@ -3,7 +3,7 @@
 # Start or stop Alfresco server
 
 # Set the following to where Tomcat is installed
-ALF_HOME=/opt/alfresco
+ALF_HOME={{ alfresco_user_home }}
 cd "$ALF_HOME"
 APPSERVER="${ALF_HOME}/tomcat"
 export CATALINA_HOME="$APPSERVER"

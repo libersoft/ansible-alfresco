@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-ALFRESCO_SCRIPT="/opt/alfresco/alfresco.sh"
+ALFRESCO_SCRIPT="{{ alfresco_user_home }}/alfresco.sh"
 
 if [ "$1" = "start" ]; then
  su - alfresco "${ALFRESCO_SCRIPT}" "start"

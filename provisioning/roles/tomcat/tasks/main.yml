@@ -9,7 +9,7 @@
   when: tomcat_downloaded|changed
 
 - name: Create tomcat symlink
-  file: path=/opt/alfresco/tomcat state=link src=/opt/apache-tomcat-{{ tomcat_version }}
+  file: path={{ alfresco_user_home }}/tomcat state=link src=/opt/apache-tomcat-{{ tomcat_version }}
   when: tomcat_downloaded|changed
 
 - name: Set tomcat file permissions

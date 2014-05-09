@@ -16,4 +16,4 @@
   user: name={{ alfresco_user }} home={{ alfresco_user_home }} uid={{ alfresco_uid }} shell=/bin/sh group=alfresco state=present
 
 - name: Create alfresco folder
-  file: path=/opt/alfresco state=directory owner={{ alfresco_user }} group=alfresco
+  file: path={{ alfresco_user_home }} state=directory owner={{ alfresco_user }} group=alfresco
