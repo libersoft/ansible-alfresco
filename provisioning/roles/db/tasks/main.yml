@@ -20,7 +20,7 @@
 
 - name: Wait for the service up
   wait_for: port=5432 delay=30
-  when: postgresql_repo_installed|changed
+  when: postgresql_installed|changed
 
 - name: Enable sudo for group wheel for postgres access
   lineinfile: 'dest=/etc/sudoers regexp="^%wheel ALL=NOPASSWD: ALL" line="%wheel ALL=(ALL) NOPASSWD: ALL"'
