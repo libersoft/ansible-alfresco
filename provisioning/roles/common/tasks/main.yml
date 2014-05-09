@@ -1,4 +1,7 @@
 ---
+- name: Add epel repo for byobu
+  yum: name=http://dl.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm state=present
+
 - name: Add basic packages
   yum: state=latest name={{ item }}
   with_items:
@@ -16,4 +19,4 @@
   user: name={{ alfresco_user }} home={{ alfresco_user_home }} uid={{ alfresco_uid }} shell=/bin/sh group=alfresco state=present
 
 - name: Create alfresco folder
-  file: path={{ alfresco_user_home }} state=directory owner={{ alfresco_user }} group=alfresco
+  file: path={{ alfresco_user_home }} state=directory owner={{ alfresco_user }} group=alfresco mode=0770
