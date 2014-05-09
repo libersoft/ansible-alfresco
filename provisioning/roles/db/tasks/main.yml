@@ -1,4 +1,4 @@
---
+---
 - name: Install the postgresql remote repo
   yum: name=http://yum.postgresql.org/{{ postgresql_version }}/redhat/rhel-6-x86_64/pgdg-centos{{ postgresql_version|replace('.','') }}-{{ postgresql_version }}-{{ postgresql_build }}.noarch.rpm state=present
 
