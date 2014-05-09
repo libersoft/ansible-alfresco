@@ -34,7 +34,7 @@
   when: alfresco_extracted|changed
 
 - name: Install alfresco init script
-  copy: src=alfresco dest=/etc/init.d/alfresco owner=root group=root mode=0755
+  template: src=alfresco dest=/etc/init.d/alfresco owner=root group=root mode=0755
   when: alfresco_extracted|changed
 
 - name: Install alfresco global configuration
