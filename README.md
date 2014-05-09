@@ -53,7 +53,7 @@ Currently in testing.
 
 ## Future improvements
 
-*   ~~ Include Apache Solr ~~
+*   ~~Include Apache Solr~~
 *   Apt-based distro compatibility
 *   Some refactoring (conditionals, variables, tags, users)
 *   Multi machine environment
