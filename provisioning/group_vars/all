@@ -23,3 +23,11 @@ alfresco_version: '4.2.f'
 alfresco_user: 'alfresco'
 alfresco_user_home: '/opt/alfresco'
 alfresco_uid: '501'
+alfresco_indexing: 'solr'
+
+# lucene
+index_recovery_mode: 'AUTO'
+
+# solr
+solr_host: 'localhost'
+solr_port: '8080'

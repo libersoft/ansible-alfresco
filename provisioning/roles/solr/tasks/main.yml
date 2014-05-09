@@ -1,0 +1,51 @@
+---
+- name: Download solr community
+  shell: 'wget http://dl.alfresco.com/release/community/{{ alfresco_version }}-build-{{ alfresco_build }}/alfresco-community-solr-{{ alfresco_version }}.zip
+    -O /tmp/alfresco-community-solr-{{ alfresco_version }}.zip creates=/tmp/alfresco-community-solr-{{ alfresco_version }}.zip'
+  register: alfresco_solr_downloaded
+
+- name: Extract alfresco solr
+  command: unzip -o /tmp/alfresco-community-solr-{{ alfresco_version }}.zip -d /tmp/alfresco-solr/
+  register: alfresco_solr_extracted
+  #when: alfresco_solr_downloaded|changed
+
+- name: Create alfresco-solr directory
+  file: path={{ alfresco_user_home }}/solr state=directory owner={{ alfresco_user }} group=alfresco
+  when: alfresco_solr_extracted|changed
+
+- name: Install alfresco-solr to tomcat
+  shell: cp -rf /tmp/alfresco-solr/* {{ alfresco_user_home }}/solr/
+  when: alfresco_solr_extracted|changed
+
+- name: Copy the context.xml file to tomcat
+  template: src=solr.xml dest={{ alfresco_user_home }}/tomcat/conf/Catalina/localhost/solr.xml owner={{ alfresco_user }} group=alfresco mode=0644
+  when: alfresco_solr_extracted|changed
+  
+- name: Configure the solcores properties for workspace
+  template: src=solrcore.properties dest={{ alfresco_user_home }}/solr/workspace-SpacesStore/conf/solrcore.properties owner={{ alfresco_user }} group=alfresco mode=0644
+  when: alfresco_solr_extracted|changed
+    
+- name: Configure the solcores properties for archive
+  template: src=solrcore.properties dest={{ alfresco_user_home }}/solr/archive-SpacesStore/conf/solrcore.properties owner={{ alfresco_user }} group=alfresco mode=0644
+  when: alfresco_solr_extracted|changed
+
+- name: Cleanup alfresco-solr unzipped
+  file: path=/tmp/alfresco-solr state=absent
+  when: alfresco_solr_extracted|changed
+
+- name: Set solr file permissions
+  file: path={{ alfresco_user_home}}/solr owner={{ alfresco_user }} group=alfresco recurse=yes
+  when: alfresco_solr_extracted|changed
+
+- name: Restart alfresco server
+  service: name=alfresco state=restarted sleep=60
+  register: alfresco_solr_restarted
+  when: alfresco_solr_extracted|changed
+
+- name: Relax security constraint for repo http comunication
+  copy: src=web.xml dest={{ alfresco_user_home }}/tomcat/webapps/solr/WEB-INF/web.xml owner={{ alfresco_user }} group=alfresco mode=0644
+  when: alfresco_solr_restarted|changed
+
+- name: Restart alfresco server
+  service: name=alfresco state=restarted
+  when: alfresco_solr_restarted|changed

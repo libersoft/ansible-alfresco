@@ -8,3 +8,4 @@
     - db 
     - tools
     - alfresco
+    - { role: solr, when: "alfresco_indexing == 'solr'" }

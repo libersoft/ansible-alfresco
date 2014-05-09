@@ -38,8 +38,21 @@
   when: alfresco_extracted|changed
 
 - name: Install alfresco global configuration
-  template: src=alfresco-global.properties dest=/opt/alfresco/tomcat/shared/classes/alfresco-global.properties owner=alfresco group=alfresco mode=0644
+  template: src=alfresco-global.properties dest={{ alfresco_user_home }}/tomcat/shared/classes/alfresco-global.properties owner=alfresco group=alfresco mode=0644
   when: alfresco_extracted|changed
+
+- name: Set alfresco file permissions
+  file: path={{ alfresco_user_home }} owner={{ alfresco_user }} group=alfresco recurse=yes
+  when: tomcat_downloaded|changed
 
 - name: Start alfresco server
   service: name=alfresco state=started
+  when: alfresco_extracted|changed
+
+- name: Relax security constraint for solr http comunication
+  template: src=web.xml dest={{ alfresco_user_home }}/tomcat/webapps/alfresco/WEB-INF/web.xml owner=alfresco group=alfresco mode=0644
+  when: alfresco_extracted|changed
+
+- name: Restart alfresco server
+  service: name=alfresco state=restarted
+  when: alfresco_extracted|changed 
