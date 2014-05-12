@@ -9,6 +9,7 @@
     - unzip
     - libselinux-python
     - python-psycopg2
+    - git
     - vim
     - byobu
 
