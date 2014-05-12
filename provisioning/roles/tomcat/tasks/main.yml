@@ -1,6 +1,6 @@
 ---
 - name: Download tomcat
-  shell: 'wget http://apache.mirrors.pair.com/tomcat/tomcat-{{ tomcat_version|first() }}/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz
+  shell: 'wget http://archive.apache.org/dist/tomcat/tomcat-{{ tomcat_version|first() }}/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz
     -O /tmp/apache-tomcat-{{ tomcat_version }}.tar.gz creates=/tmp/apache-tomcat-{{ tomcat_version }}.tar.gz'
   register: tomcat_downloaded
 
