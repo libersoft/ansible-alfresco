@@ -34,7 +34,7 @@
   when: alfresco_extracted|changed
 
 - name: Install libreoffice startup script
-  copy: src=start_oo.sh dest={{ alfresco_user_home }}/start_oo.sh owner={{ alfresco_user }} group={{ alfresco_group }} mode=0744
+  copy: src=start_oo.sh dest={{ alfresco_user_home }}/start_oo.sh owner={{ alfresco_user }} group={{ alfresco_group }} mode=0755
   when: alfresco_extracted|changed
 
 - name: Install alfresco startup script
@@ -49,8 +49,8 @@
   template: src=alfresco-global.properties dest={{ alfresco_user_home }}/tomcat/shared/classes/alfresco-global.properties owner={{ alfresco_user }} group={{ alfresco_group }} mode=0644
   when: alfresco_extracted|changed
 
-- name: Set alfresco file permissions
-  file: path={{ alfresco_user_home }} owner={{ alfresco_user }} group={{ alfresco_group }} recurse=yes mode=774
+- name: Set alfresco file owner
+  shell: chown -R {{ alfresco_user }}:{{ alfresco_group }} {{ alfresco_user_home }}
   when: alfresco_extracted|changed
 
 - name: Start alfresco server
