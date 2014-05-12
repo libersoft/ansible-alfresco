@@ -31,7 +31,7 @@ Configuration variables are in `group_vars/all`. You can adjust default values t
     $ cd ansible-alfresco/provisioning
     $ ansible-playbook [target] site.yml
 
-Point your browser to `http://{{ target_ip }}:58080/share`
+Point your browser to `http://{{ target_ip }}:8080/share`
 
 *   user:admin
 *   password:admin
