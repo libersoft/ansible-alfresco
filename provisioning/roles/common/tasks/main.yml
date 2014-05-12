@@ -13,10 +13,10 @@
     - byobu
 
 - name: Create alfresco group
-  group: name=alfresco state=present
+  group: name={{ alfresco_group }} state=present
 
 - name: Create alfresco user
-  user: name={{ alfresco_user }} home={{ alfresco_user_home }} uid={{ alfresco_uid }} shell=/bin/sh group=alfresco state=present
+  user: name={{ alfresco_user }} home={{ alfresco_user_home }} uid={{ alfresco_uid }} shell=/bin/sh group={{ alfresco_group }} state=present
 
 - name: Create alfresco folder
-  file: path={{ alfresco_user_home }} state=directory owner={{ alfresco_user }} group=alfresco mode=0770
+  file: path={{ alfresco_user_home }} state=directory owner={{ alfresco_user }} group={{ alfresco_group }} mode=0770

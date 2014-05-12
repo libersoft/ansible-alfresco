@@ -22,23 +22,23 @@
   when: alfresco_extracted|changed
 
 - name: Create alfresco alf_data directory
-  file: path={{ alfresco_user_home }}/alf_data state=directory owner={{ alfresco_user }} group=alfresco
+  file: path={{ alfresco_user_home }}/alf_data state=directory owner={{ alfresco_user }} group={{ alfresco_group }}
   when: alfresco_extracted|changed
 
 - name: Create alfresco amp directory
-  file: path={{ alfresco_user_home }}/amps state=directory owner={{ alfresco_user }} group=alfresco
+  file: path={{ alfresco_user_home }}/amps state=directory owner={{ alfresco_user }} group={{ alfresco_group }}
   when: alfresco_extracted|changed
 
 - name: Create alfresco amp_share directory
-  file: path={{ alfresco_user_home }}/amps_share state=directory owner={{ alfresco_user }} group=alfresco
+  file: path={{ alfresco_user_home }}/amps_share state=directory owner={{ alfresco_user }} group={{ alfresco_group }}
   when: alfresco_extracted|changed
 
 - name: Install libreoffice startup script
-  copy: src=start_oo.sh dest={{ alfresco_user_home }}/start_oo.sh owner=alfresco group=alfresco mode=0744
+  copy: src=start_oo.sh dest={{ alfresco_user_home }}/start_oo.sh owner={{ alfresco_user }} group={{ alfresco_group }} mode=0744
   when: alfresco_extracted|changed
 
 - name: Install alfresco startup script
-  template: src=alfresco.sh dest={{ alfresco_user_home }}/bin/alfresco.sh owner=alfresco group=alfresco mode=0755
+  template: src=alfresco.sh dest={{ alfresco_user_home }}/bin/alfresco.sh owner={{ alfresco_user }} group={{ alfresco_group }} mode=0755
   when: alfresco_extracted|changed
 
 - name: Install alfresco init script
@@ -46,11 +46,11 @@
   when: alfresco_extracted|changed
 
 - name: Install alfresco global configuration
-  template: src=alfresco-global.properties dest={{ alfresco_user_home }}/tomcat/shared/classes/alfresco-global.properties owner=alfresco group=alfresco mode=0644
+  template: src=alfresco-global.properties dest={{ alfresco_user_home }}/tomcat/shared/classes/alfresco-global.properties owner={{ alfresco_user }} group={{ alfresco_group }} mode=0644
   when: alfresco_extracted|changed
 
 - name: Set alfresco file permissions
-  file: path={{ alfresco_user_home }} owner={{ alfresco_user }} group=alfresco recurse=yes mode=774
+  file: path={{ alfresco_user_home }} owner={{ alfresco_user }} group={{ alfresco_group }} recurse=yes mode=774
   when: alfresco_extracted|changed
 
 - name: Start alfresco server
@@ -58,7 +58,7 @@
   when: alfresco_extracted|changed
 
 - name: Relax security constraint for solr http comunication
-  copy: src=web.xml dest={{ alfresco_user_home }}/tomcat/webapps/alfresco/WEB-INF/web.xml owner=alfresco group=alfresco mode=0644
+  copy: src=web.xml dest={{ alfresco_user_home }}/tomcat/webapps/alfresco/WEB-INF/web.xml owner={{ alfresco_user }} group={{ alfresco_group }} mode=0644
   when: alfresco_extracted|changed
 
 - name: Restart alfresco server

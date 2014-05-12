@@ -10,7 +10,7 @@
   #when: alfresco_solr_downloaded|changed
 
 - name: Create alfresco-solr directory
-  file: path={{ alfresco_user_home }}/solr state=directory owner={{ alfresco_user }} group=alfresco
+  file: path={{ alfresco_user_home }}/solr state=directory owner={{ alfresco_user }} group={{ alfresco_group }}
   when: alfresco_solr_extracted|changed
 
 - name: Install alfresco-solr to tomcat
@@ -18,15 +18,15 @@
   when: alfresco_solr_extracted|changed
 
 - name: Copy the context.xml file to tomcat
-  template: src=solr.xml dest={{ alfresco_user_home }}/tomcat/conf/Catalina/localhost/solr.xml owner={{ alfresco_user }} group=alfresco mode=0644
+  template: src=solr.xml dest={{ alfresco_user_home }}/tomcat/conf/Catalina/localhost/solr.xml owner={{ alfresco_user }} group={{ alfresco_group }} mode=0644
   when: alfresco_solr_extracted|changed
   
 - name: Configure the solcores properties for workspace
-  template: src=solrcore.properties dest={{ alfresco_user_home }}/solr/workspace-SpacesStore/conf/solrcore.properties owner={{ alfresco_user }} group=alfresco mode=0644
+  template: src=solrcore.properties dest={{ alfresco_user_home }}/solr/workspace-SpacesStore/conf/solrcore.properties owner={{ alfresco_user }} group={{ alfresco_group }} mode=0644
   when: alfresco_solr_extracted|changed
     
 - name: Configure the solcores properties for archive
-  template: src=solrcore.properties dest={{ alfresco_user_home }}/solr/archive-SpacesStore/conf/solrcore.properties owner={{ alfresco_user }} group=alfresco mode=0644
+  template: src=solrcore.properties dest={{ alfresco_user_home }}/solr/archive-SpacesStore/conf/solrcore.properties owner={{ alfresco_user }} group={{ alfresco_group }} mode=0644
   when: alfresco_solr_extracted|changed
 
 - name: Cleanup alfresco-solr unzipped
@@ -34,7 +34,7 @@
   when: alfresco_solr_extracted|changed
 
 - name: Set solr file permissions
-  file: path={{ alfresco_user_home}}/solr owner={{ alfresco_user }} group=alfresco recurse=yes
+  file: path={{ alfresco_user_home}}/solr owner={{ alfresco_user }} group={{ alfresco_group }} recurse=yes
   when: alfresco_solr_extracted|changed
 
 - name: Restart alfresco server
@@ -43,7 +43,7 @@
   when: alfresco_solr_extracted|changed
 
 - name: Relax security constraint for repo http comunication
-  copy: src=web.xml dest={{ alfresco_user_home }}/tomcat/webapps/solr/WEB-INF/web.xml owner={{ alfresco_user }} group=alfresco mode=0644
+  copy: src=web.xml dest={{ alfresco_user_home }}/tomcat/webapps/solr/WEB-INF/web.xml owner={{ alfresco_user }} group={{ alfresco_group }} mode=0644
   when: alfresco_solr_restarted|changed
 
 - name: Restart alfresco server

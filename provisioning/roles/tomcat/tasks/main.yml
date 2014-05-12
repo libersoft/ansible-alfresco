@@ -13,7 +13,7 @@
   when: tomcat_downloaded|changed
 
 - name: Set tomcat file permissions
-  file: path=/opt/apache-tomcat-{{ tomcat_version }} owner={{ alfresco_user }} group=alfresco recurse=yes
+  file: path=/opt/apache-tomcat-{{ tomcat_version }} owner={{ alfresco_user }} group={{ alfresco_group }} recurse=yes
   when: tomcat_downloaded|changed
 
 - name: Set shared loader
