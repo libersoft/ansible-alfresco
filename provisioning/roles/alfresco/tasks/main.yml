@@ -14,7 +14,7 @@
   when: alfresco_extracted|changed
 
 - name: Install alfresco bin, licenses and readme
-  shell: cp -rf /tmp/alfresco/bin /tmp/alfresco/licenses /tmp/alfresco/README.txt {{ alfresco_user_home }}/tomcat/
+  shell: cp -rf /tmp/alfresco/bin /tmp/alfresco/licenses /tmp/alfresco/README.txt {{ alfresco_user_home }}/
   when: alfresco_extracted|changed
 
 - name: Cleanup alfresco unzipped
@@ -25,12 +25,20 @@
   file: path={{ alfresco_user_home }}/alf_data state=directory owner={{ alfresco_user }} group=alfresco
   when: alfresco_extracted|changed
 
+- name: Create alfresco amp directory
+  file: path={{ alfresco_user_home }}/amps state=directory owner={{ alfresco_user }} group=alfresco
+  when: alfresco_extracted|changed
+
+- name: Create alfresco amp_share directory
+  file: path={{ alfresco_user_home }}/amps_share state=directory owner={{ alfresco_user }} group=alfresco
+  when: alfresco_extracted|changed
+
 - name: Install libreoffice startup script
   copy: src=start_oo.sh dest={{ alfresco_user_home }}/start_oo.sh owner=alfresco group=alfresco mode=0744
   when: alfresco_extracted|changed
 
 - name: Install alfresco startup script
-  template: src=alfresco.sh dest={{ alfresco_user_home }}/alfresco.sh owner=alfresco group=alfresco mode=0744
+  template: src=alfresco.sh dest={{ alfresco_user_home }}/bin/alfresco.sh owner=alfresco group=alfresco mode=0755
   when: alfresco_extracted|changed
 
 - name: Install alfresco init script
@@ -42,7 +50,7 @@
   when: alfresco_extracted|changed
 
 - name: Set alfresco file permissions
-  file: path={{ alfresco_user_home }} owner={{ alfresco_user }} group=alfresco recurse=yes
+  file: path={{ alfresco_user_home }} owner={{ alfresco_user }} group=alfresco recurse=yes mode=774
   when: alfresco_extracted|changed
 
 - name: Start alfresco server
