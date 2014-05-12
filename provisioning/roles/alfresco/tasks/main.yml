@@ -34,7 +34,7 @@
   when: alfresco_extracted|changed
 
 - name: Install libreoffice startup script
-  copy: src=start_oo.sh dest={{ alfresco_user_home }}/start_oo.sh owner={{ alfresco_user }} group={{ alfresco_group }} mode=0755
+  copy: src=start_oo.sh dest={{ alfresco_user_home }}/bin/start_oo.sh owner={{ alfresco_user }} group={{ alfresco_group }} mode=0755
   when: alfresco_extracted|changed
 
 - name: Install alfresco startup script

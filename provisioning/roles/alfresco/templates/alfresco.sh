@@ -15,7 +15,7 @@ export JAVA_OPTS="${JAVA_OPTS} -Dalfresco.home=${ALF_HOME} -Dcom.sun.management.
 if [ "$1" = "start" ]; then
  "${APPSERVER}/bin/startup.sh"
  if [ -r ./start_oo.sh ]; then
-  "${ALF_HOME}/start_oo.sh"
+  "${ALF_HOME}/bin/start_oo.sh"
  fi
 elif [ "$1" = "stop" ]; then
  "${APPSERVER}/bin/shutdown.sh"
