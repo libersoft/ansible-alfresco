@@ -12,6 +12,10 @@
   file: path=/opt/tomcat state=link src=/opt/apache-tomcat-{{ tomcat_version }}
   when: tomcat_downloaded|changed
 
+- name: Install tomcat init.d script
+  copy: src=tomcat dest=/etc/init.d owner=root group=root mode=0755
+  when: tomcat_downloaded|changed
+
 #- name: Set shared loader
 #  lineinfile: dest=/opt/apache-tomcat-{{ tomcat_version }}/conf/catalina.properties regexp="^shared.loader=" line="shared.loader=${catalina.base}/shared/classes,${catalina.base}/shared/lib/*.jar"
 
