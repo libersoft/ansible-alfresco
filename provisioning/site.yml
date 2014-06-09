@@ -2,10 +2,11 @@
 - hosts: all
   sudo: True
   roles:
-    - common
-    - java
-    - tomcat
-    - db 
-    - tools
-    - alfresco
-    - { role: solr, when: "alfresco_indexing == 'solr'" }
+      - common
+      - java
+      - tomcat
+      - {role: mysql, when: "alfresco_db == 'mysql'"}
+      - {role: postgresql, when: "alfresco_db == 'postgresql'"}
+      - tools
+      - alfresco
+      - { role: solr, when: "alfresco_indexing == 'solr'" }

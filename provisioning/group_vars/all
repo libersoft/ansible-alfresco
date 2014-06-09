@@ -4,15 +4,22 @@ java_version: '7u51'
 java_build: 'b13'
 
 # tomcat
-tomcat_version: '7.0.52'
+tomcat_version: '7.0.53'
 java_opts: '-Xms512m -Xmx1000m -Xss768k -XX:MaxPermSize=256m -XX:NewSize=256m -server'
 
 # db
-postgresql_version: '9.3'
-postgresql_build: '1'
+alfresco_db: 'mysql'
 alfresco_db_name: 'alfresco'
 alfresco_db_user: 'alfresco'
 alfresco_db_password: 'alfresco'
+
+## mysql
+mysql_root_db_pass: 'root'
+mysql_connector_version: '5.1.31'
+
+## postgresql
+postgresqlversion: '9.3'
+postgresql_build: '1'
 
 # tools
 imagemagick_version: '6.5.4.7'

@@ -2,10 +2,10 @@
 
 [Ansible](http://www.ansible.com/home) playbook to deploy an allinone rpm-based machine alfresco community environment. Based on a 1524MB RAM (and relative JAVA_OPTS tuning) CentOS 6.4 [minimal vagrant box](https://github.com/2creatives/vagrant-centos/releases/tag/v6.5.1) and packed with following components:
 
-*   Some prerequisites and utilities (wget, unzip, libselinux-python, python-psycopg2, vim, byobu)
+*   Some prerequisites and utilities (wget, unzip, libselinux-python, python-psycopg2, MySQL-python, vim, byobu)
 *   Oracle Java JDK 7 from Oracle website
 *   Apache Tomcat 7 from Tomcat website
-*   PostgreSql 9 from PostgreSql official rpm repo
+*   PostgreSql 9 from PostgreSql official rpm repo / Mysql 5 from Mysql official repo and Mysql-connector-java
 *   ImageMagick from distro repo
 *   FFmpeg from atrpms repo
 *   Libreoffice from distro repo
