@@ -5,8 +5,8 @@
       - common
       - java
       - tomcat
-      - {role: mysql, when: "alfresco_db == 'mysql'"}
-      - {role: postgresql, when: "alfresco_db == 'postgresql'"}
-      - tools
-      - alfresco
-      - { role: solr, when: "alfresco_indexing == 'solr'" }
+  #- {role: mysql, when: "alfresco_db == 'mysql'"}
+  #    - {role: postgresql, when: "alfresco_db == 'postgresql'"}
+  #    - tools
+  #    - alfresco
+  #    - { role: solr, when: "alfresco_indexing == 'solr'" }
