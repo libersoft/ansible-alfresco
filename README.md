@@ -49,7 +49,7 @@ Point your browser to `http://127.0.0.1:58080/share`
 
 ## Status
 
-Currently in testing.
+Tested on some machines, ready for development environment.
 
 ## Future improvements
 
