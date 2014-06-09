@@ -57,6 +57,10 @@
   service: name=alfresco state=started
   when: alfresco_extracted|changed
 
+- name: Wait for alfresco war deploy
+  wait_for: path=/opt/alfresco/tomcat/webapps/alfresco/WEB-INF/web.xml
+  when: alfresco_extracted|changed
+
 - name: Relax security constraint for solr http comunication
   copy: src=web.xml dest={{ alfresco_user_home }}/tomcat/webapps/alfresco/WEB-INF/web.xml owner={{ alfresco_user }} group={{ alfresco_group }} mode=0644
   when: alfresco_extracted|changed
