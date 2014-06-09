@@ -7,7 +7,7 @@
 - name: Extract alfresco solr
   command: unzip -o /tmp/alfresco-community-solr-{{ alfresco_version }}.zip -d /tmp/alfresco-solr/
   register: alfresco_solr_extracted
-  #when: alfresco_solr_downloaded|changed
+  when: alfresco_solr_downloaded|changed
 
 - name: Create alfresco-solr directory
   file: path={{ alfresco_user_home }}/solr state=directory owner={{ alfresco_user }} group={{ alfresco_group }}
@@ -41,6 +41,10 @@
   service: name=alfresco state=restarted
   register: alfresco_solr_restarted
   when: alfresco_solr_extracted|changed
+
+- name: Wait for alfresco war deploy
+  wait_for: path=/opt/alfresco/tomcat/webapps/solr/WEB-INF/web.xml
+  when: alfresco_extracted|changed
 
 - name: Relax security constraint for repo http comunication
   copy: src=web.xml dest={{ alfresco_user_home }}/tomcat/webapps/solr/WEB-INF/web.xml owner={{ alfresco_user }} group={{ alfresco_group }} mode=0644
