@@ -5,7 +5,7 @@
   register: tomcat_downloaded
 
 - name: Extract tomcat
-  shell: tar xzf /tmp/apache-tomcat-{{ tomcat_version }}.tar.gz -C /opt/
+  shell: 'tar xzf /tmp/apache-tomcat-{{ tomcat_version }}.tar.gz -C /opt/'
   when: tomcat_downloaded|changed
 
 - name: Create tomcat symlink
