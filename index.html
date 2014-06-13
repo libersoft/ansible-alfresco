@@ -44,10 +44,10 @@
 <p><a href="http://www.ansible.com/home">Ansible</a> playbook to deploy an allinone rpm-based machine alfresco community environment. Based on a 1524MB RAM (and relative JAVA_OPTS tuning) CentOS 6.4 <a href="https://github.com/2creatives/vagrant-centos/releases/tag/v6.5.1">minimal vagrant box</a> and packed with following components:</p>
 
 <ul>
-<li>  Some prerequisites and utilities (wget, unzip, libselinux-python, python-psycopg2, vim, byobu)</li>
+<li>  Some prerequisites and utilities (wget, unzip, libselinux-python, python-psycopg2, MySQL-python, vim, byobu)</li>
 <li>  Oracle Java JDK 7 from Oracle website</li>
 <li>  Apache Tomcat 7 from Tomcat website</li>
-<li>  PostgreSql 9 from PostgreSql official rpm repo</li>
+<li>  PostgreSql 9 from PostgreSql official rpm repo / Mysql 5 from Mysql official repo and Mysql-connector-java</li>
 <li>  ImageMagick from distro repo</li>
 <li>  FFmpeg from atrpms repo</li>
 <li>  Libreoffice from distro repo</li>
@@ -98,7 +98,7 @@ $ vagrant provision
 </ul><h2>
 <a name="status" class="anchor" href="#status"><span class="octicon octicon-link"></span></a>Status</h2>
 
-<p>Currently in testing.</p>
+<p>Tested on some machines, ready for development environment.</p>
 
 <h2>
 <a name="future-improvements" class="anchor" href="#future-improvements"><span class="octicon octicon-link"></span></a>Future improvements</h2>
