@@ -13,7 +13,7 @@
   when: tomcat_downloaded|changed
 
 - name: Install tomcat init.d script
-  copy: src=tomcat dest=/etc/init.d owner=root group=root mode=0755
+  template: src=tomcat dest=/etc/init.d owner=root group=root mode=0755
   when: tomcat_downloaded|changed
 
 #- name: Set shared loader
