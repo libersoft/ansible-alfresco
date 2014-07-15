@@ -12,13 +12,13 @@
 #
  
 #Location of JAVA_HOME (bin files)
-export JAVA_HOME=/usr/java/jdk1.7.0_51
- 
+export JAVA_HOME=/usr/java/jdk{{ java_version_full }}
+
 #Add Java binary files to PATH
 export PATH=$JAVA_HOME/bin:$PATH
  
 #CATALINA_HOME is the location of the bin files of Tomcat  
-export CATALINA_HOME=/opt/tomcat  
+export CATALINA_HOME=/opt/tomcat
  
 #CATALINA_BASE is the location of the configuration files of this instance of Tomcat
 export CATALINA_BASE=/opt/tomcat

@@ -2,6 +2,7 @@
 # java
 java_version: '7u51'
 java_build: 'b13'
+java_version_full: '1.7.0_51'
 
 # tomcat
 tomcat_version: '7.0.53'
