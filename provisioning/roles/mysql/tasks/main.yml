@@ -9,15 +9,15 @@
 - name: Download mysql java-connector
   shell: 'wget http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-{{ mysql_connector_version }}.tar.gz
       -O /tmp/mysql-connector-java-{{ mysql_connector_version }}.tar.gz creates=/tmp/mysql-connector-java-{{ mysql_connector_version }}.tar.gz'
-  register: mysql-connector_downloaded
+  register: mysqlconnector_downloaded
 
 - name: Extract mysql-java-connector
   shell: 'tar xzf /tmp/mysql-connector-java-{{ mysql_connector_version }}.tar.gz -C /tmp'
-  when: mysql-connector_downloaded
+  when: mysqlconnector_downloaded|changed
 
 - name: Install mysql-java-connector
   shell: 'mv /tmp/mysql-connector-java-{{ mysql_connector_version }}/mysql-connector-java-{{ mysql_connector_version }}-bin.jar /opt/alfresco/tomcat/lib/ && chown alfresco:alfresco /opt/alfresco/tomcat/lib/mysql-connector-java-5.1.31-bin.jar'
-  when: mysql-connector_downloaded
+  when: mysqlconnector_downloaded|changed
 
 - name: Cleanup mysql-java-connector
   shell: 'rm -rf /tmp/mysql-connector-java-{{ mysql_connector_version }}'
