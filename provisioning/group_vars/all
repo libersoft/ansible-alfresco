@@ -31,6 +31,7 @@ alfresco_user: 'alfresco'
 alfresco_group: 'alfresco'
 alfresco_user_home: '/opt/alfresco'
 alfresco_data_home: '/opt/alfresco'
+alfresco_log_home: '/var/log/alfresco'
 alfresco_uid: '501'
 alfresco_indexing: 'solr'
 

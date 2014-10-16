@@ -33,6 +33,10 @@
   file: path={{ alfresco_user_home }}/amps_share state=directory owner={{ alfresco_user }} group={{ alfresco_group }}
   when: alfresco_extracted|changed
 
+- name: Create alfresco log directory
+  file: path={{ alfresco_log_home }} state=directory owner={{ alfresco_user }} group={{ alfresco_group }}
+  when: alfresco_extracted|changed
+
 - name: Install libreoffice startup script
   copy: src=start_oo.sh dest={{ alfresco_user_home }}/bin/start_oo.sh owner={{ alfresco_user }} group={{ alfresco_group }} mode=0755
   when: alfresco_extracted|changed
@@ -47,6 +51,10 @@
 
 - name: Install alfresco global configuration
   template: src=alfresco-global.properties dest={{ alfresco_user_home }}/tomcat/shared/classes/alfresco-global.properties owner={{ alfresco_user }} group={{ alfresco_group }} mode=0644
+  when: alfresco_extracted|changed
+
+- name: Install alfresco logging configuration
+  template: src=custom-log4j.properties dest={{ alfresco_user_home }}/tomcat/shared/classes/alfresco/extension/custom-log4j.properties owner={{ alfresco_user }} group={{ alfresco_group }} mode=0644
   when: alfresco_extracted|changed
 
 - name: Set alfresco file owner
