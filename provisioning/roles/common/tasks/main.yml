@@ -13,6 +13,7 @@
     - git
     - vim
     - byobu
+    - htop
 
 - name: Create alfresco group
   group: name={{ alfresco_group }} state=present
