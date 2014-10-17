@@ -16,6 +16,10 @@
   template: src=tomcat dest=/etc/init.d owner=root group=root mode=0755
   when: tomcat_downloaded|changed
 
+- name: Start and enable the tomcat service
+  service: name=tomcat state=restarted enabled=yes
+  when: tomcat_downloaded|changed
+
 #- name: Set shared loader
 #  lineinfile: dest=/opt/apache-tomcat-{{ tomcat_version }}/conf/catalina.properties regexp="^shared.loader=" line="shared.loader=${catalina.base}/shared/classes,${catalina.base}/shared/lib/*.jar"
 

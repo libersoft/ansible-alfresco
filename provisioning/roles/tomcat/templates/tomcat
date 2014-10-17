@@ -10,7 +10,8 @@
 # Added coloring and additional status
 # Added check for existence of the tomcat user
 #
- 
+# chkconfig: 345 99 01
+
 #Location of JAVA_HOME (bin files)
 export JAVA_HOME=/usr/java/jdk{{ java_version_full }}
 
