@@ -1,10 +1,10 @@
 ---
 # java
-java_version: '7u51'
-java_build: 'b13'
+java_version: '7u67'
+java_build: 'b01'
 
 # tomcat
-tomcat_version: '7.0.53'
+tomcat_version: '7.0.56'
 java_opts: '-Xms512m -Xmx1000m -Xss768k -XX:MaxPermSize=256m -XX:NewSize=256m -server'
 
 # db
