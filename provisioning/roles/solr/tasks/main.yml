@@ -44,7 +44,7 @@
 
 - name: Wait for alfresco war deploy
   wait_for: path=/opt/alfresco/tomcat/webapps/solr/WEB-INF/web.xml
-  when: alfresco_extracted|changed
+  when: alfresco_solr_extracted|changed
 
 - name: Relax security constraint for repo http comunication
   copy: src=web.xml dest={{ alfresco_user_home }}/tomcat/webapps/solr/WEB-INF/web.xml owner={{ alfresco_user }} group={{ alfresco_group }} mode=0644
