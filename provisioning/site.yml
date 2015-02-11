@@ -3,8 +3,8 @@
   sudo: True
   roles:
       - common
-      - { role: openjdk, when "java_type == 'open'"
-      - { role: java, when: "java_type == 'sun'"
+      - { role: openjdk, when: "java_type == 'open'"}
+      - { role: java, when: "java_type == 'sun'"}
       - tomcat
       - {role: mysql, when: "alfresco_db == 'mysql'"}
       - {role: postgresql, when: "alfresco_db == 'postgresql'"}
