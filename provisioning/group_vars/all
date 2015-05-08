@@ -6,7 +6,7 @@ java_build: 'b14'
 
 # tomcat
 tomcat_version: '7.0.61'
-java_opts: '-Xms512m -Xmx1000m -Xss768k -XX:MaxPermSize=256m -XX:NewSize=256m -server'
+java_opts: '-Xms512m -Xmx1000m -Xss768k -XX:NewSize=256m -server'
 
 # db
 alfresco_db: 'mysql'
