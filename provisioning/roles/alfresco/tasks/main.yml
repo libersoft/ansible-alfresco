@@ -72,7 +72,3 @@
 - name: Relax security constraint for solr http comunication
   copy: src=web.xml dest={{ alfresco_user_home }}/tomcat/webapps/alfresco/WEB-INF/web.xml owner={{ alfresco_user }} group={{ alfresco_group }} mode=0644
   when: alfresco_extracted|changed
-
-- name: Restart alfresco server
-  service: name=alfresco state=restarted
-  when: alfresco_extracted|changed 
