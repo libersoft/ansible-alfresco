@@ -6,11 +6,12 @@
 
 - name: Extract tomcat
   shell: 'tar xzf /tmp/apache-tomcat-{{ tomcat_version }}.tar.gz -C /opt/'
+  register: tomcat_extracted
   when: tomcat_downloaded|changed
 
 - name: Create tomcat symlink
   file: path={{ alfresco_user_home }}/tomcat state=link src=/opt/apache-tomcat-{{ tomcat_version }}
-  when: tomcat_downloaded|changed
+  when: tomcat_extracted|changed
 
 - name: Set shared loader
   lineinfile: dest=/opt/apache-tomcat-{{ tomcat_version }}/conf/catalina.properties regexp="^shared.loader=" line="shared.loader=${catalina.base}/shared/classes,${catalina.base}/shared/lib/*.jar"
