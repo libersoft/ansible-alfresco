@@ -42,8 +42,6 @@
 
 - name: Create alfresco database
   mysql_db: login_user=root login_password={{ mysql_root_db_pass }} name={{ alfresco_db_name }} state=present
-  when: mysql_installed|changed
 
 - name: Create alfresco_user / roles
   mysql_user: login_user=root login_password={{ mysql_root_db_pass }} name={{ alfresco_db_user }} password={{ alfresco_db_password}} priv={{ alfresco_db_name }}.*:ALL state=present host=localhost
-  when: mysql_installed|changed
