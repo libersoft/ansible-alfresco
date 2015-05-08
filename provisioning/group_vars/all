@@ -1,8 +1,8 @@
 ---
 # java
-java_type: 'open'
-java_version: '7u67'
-java_build: 'b01'
+java_type: 'sun'
+java_version: '8u45'
+java_build: 'b14'
 
 # tomcat
 tomcat_version: '7.0.56'
