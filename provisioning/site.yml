@@ -5,9 +5,9 @@
       - common
       - { role: openjdk, when: "java_type == 'open'"}
       - { role: java, when: "java_type == 'sun'"}
-      - tomcat
-      - {role: mysql, when: "alfresco_db == 'mysql'"}
+      - { role: tomcat, tags: ['app'] }
+      - { role: mysql, when: "alfresco_db == 'mysql'", tags: ['db'] }
       - {role: postgresql, when: "alfresco_db == 'postgresql'"}
       - tools
-      - alfresco
+      - { role: alfresco, tags: ['app'] }
       - { role: solr, when: "alfresco_indexing == 'solr'" }
