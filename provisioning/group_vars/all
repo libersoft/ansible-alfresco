@@ -5,7 +5,7 @@ java_version: '8u45'
 java_build: 'b14'
 
 # tomcat
-tomcat_version: '7.0.56'
+tomcat_version: '7.0.61'
 java_opts: '-Xms512m -Xmx1000m -Xss768k -XX:MaxPermSize=256m -XX:NewSize=256m -server'
 
 # db
@@ -16,7 +16,7 @@ alfresco_db_password: 'alfresco'
 
 ## mysql
 mysql_root_db_pass: 'root'
-mysql_connector_version: '5.1.31'
+mysql_connector_version: '5.1.35'
 
 ## postgresql
 postgresqlversion: '9.3'
