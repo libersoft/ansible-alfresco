@@ -2,12 +2,12 @@
 - hosts: all
   sudo: True
   roles:
-      - common
+      - { role: common, tags: ['alfresco'] }
       - { role: openjdk, when: "java_type == 'open'"}
       - { role: java, when: "java_type == 'sun'"}
       - { role: tomcat, tags: ['app'] }
       - { role: mysql, when: "alfresco_db == 'mysql'", tags: ['db'] }
       - {role: postgresql, when: "alfresco_db == 'postgresql'"}
-      - tools
-      - { role: alfresco, tags: ['app'] }
+      - { role: tools, tags: ['alfresco'] }
+      - { role: alfresco, tags: ['app', 'alfresco'] }
       - { role: solr, when: "alfresco_indexing == 'solr'" }
