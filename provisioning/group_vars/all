@@ -10,6 +10,7 @@ java_opts: '-Xms512m -Xmx1000m -Xss768k -XX:NewSize=256m -server'
 
 # db
 alfresco_db: 'mysql'
+alfresco_db_host: 'localhost'
 alfresco_db_name: 'alfresco'
 alfresco_db_user: 'alfresco'
 alfresco_db_password: 'alfresco'
