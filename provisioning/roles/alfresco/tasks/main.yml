@@ -58,7 +58,7 @@
   when: alfresco_extracted|changed
 
 - name: Set alfresco file owner
-  shell: chown -R {{ alfresco_user }}:{{ alfresco_group }} {{ alfresco_user_home }} && chown -R {{ alfresco_user }}:{{ alfresco_group }} /opt/apache-tomcat-{{ tomcat_version }}
+  shell: chown -R {{ alfresco_user }}:{{ alfresco_group }} {{ alfresco_user_home }} && chown -R {{ alfresco_user }}:{{ alfresco_group }} {{ alfresco_user_home }}/tomcat/
   when: alfresco_extracted|changed
 
 - name: Start alfresco server
