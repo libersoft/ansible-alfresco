@@ -24,6 +24,9 @@
   shell: 'rm -rf /tmp/mysql-connector-java-{{ mysql_connector_version }}'
   when: mysqlconnector_extracted|changed
 
+- name: Configure transaction isolation
+  lineinfile: dest=/etc/my.cnf insertafter="sql-mode" line="transaction-isolation=READ-COMMITTED"
+
 - name: Start and enable the mysql service
   service: name=mysqld state=restarted enabled=yes
   when: mysql_installed|changed
